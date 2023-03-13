@@ -1,0 +1,5 @@
+*.pickle
+*.h5
+*.npy
+Training/*.jpg
+Drive/*.jpg
