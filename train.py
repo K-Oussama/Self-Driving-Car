@@ -1,9 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Fri Apr 20 19:54:44 2018
-
-@author: Admin
-"""
 
 import numpy as np
 import pandas as pd
@@ -24,15 +19,14 @@ from keras.optimizers import Adam
 import random
 import h5py
    
-with open('my_datasetimg.pickle', 'rb') as data:
+with open('Assets/my_datasetimg.pickle', 'rb') as data:
     dataset = pickle.load(data)
 X=np.array(dataset)
 
-with open('my_dataset.pickle', 'rb') as datakey:
+with open('Assets/my_dataset.pickle', 'rb') as datakey:
     datasetkey = pickle.load(datakey)
 Y=np.array(datasetkey)
 
-#X_train, X_test, y_train, y_test = train_test_split(X,Y, test_size=0.2)
 # create model
 model = Sequential()
 model.add(Lambda(lambda x: x/127.5-1.0, input_shape=(160, 320, 3)))
@@ -55,10 +49,3 @@ model.fit(X, Y, epochs=100, batch_size=10)
 model.save('model_15.h5')
 # evaluate the model
 scores = model.evaluate(X, Y)
-# X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.33, random_state=42)
-# clf = MLPClassifier(solver='lbfgs', alpha=1e-5, random_state=1)
-# clf.fit(X_train, y_train)
-# clf.score(X_test, y_test)
-# joblib.dump(clf, 'model.pkl')
-
-# print("\n%s: %.2f%%" % (model.metrics_names[1], scores[1]*100))
